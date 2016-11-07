@@ -11,8 +11,12 @@ class templateVar: public VAR {
     public:
         templateVar();
         templateVar(const string& inName, T val);
+        void varInsert(map<string, VAR*> &varMap);
         virtual void constructVar(stringstream &ss);
+        virtual void setNumValue(float i);
+        virtual void setCharValue(char a);
         void print();
+        VAR * clone(stringstream &ss);
         virtual~templateVar();
 };
 

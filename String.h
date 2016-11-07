@@ -11,8 +11,13 @@ class STRING : public VAR {
     public:
         STRING();
         STRING(const string& inName, int inSize, char* inValue);
+        void varInsert(map<string, VAR*> &varMap);
         virtual void constructVar(stringstream &ss);
         void print();
+        VAR * clone(stringstream &ss);
+        string getValue();
+        void setValue(){}
+        void setStringValue(char a, int i);
         virtual ~STRING();
 };
 

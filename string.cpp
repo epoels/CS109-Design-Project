@@ -18,8 +18,21 @@ STRING::STRING(const string& inName, int inSize, char * inValue) {
     value = inValue;
 }
 
+void STRING::setStringValue(char a, int i){
+    if( i < size ) {
+        value[i] = a;
+    } else { 
+        cout << "The location is out of range of the variable" << endl;
+        throw;
+    }
+}
+
 void STRING::print() {
     cout << name << ", "  << size << ", " << value << endl;
+}
+
+void STRING::varInsert(map<string, VAR*> &varMap) {
+    varMap[name] = this;
 }
 
 void STRING::constructVar(stringstream &ss) {
@@ -30,6 +43,12 @@ void STRING::constructVar(stringstream &ss) {
     size = stoi(str.c_str(), NULL);
     getline(ss, str, ',');
     value = (char*)str.c_str();
+}
+
+VAR* STRING::clone(stringstream &ss) {
+    STRING * cloneVar = new STRING();
+    cloneVar -> constructVar(ss);
+    return cloneVar;
 }
 
 STRING::~STRING(){}
