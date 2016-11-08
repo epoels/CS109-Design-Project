@@ -57,10 +57,10 @@ void STRING::varInsert(map<string, VAR*> &varMap) {
 void STRING::constructVar(stringstream &ss) {
     string str = "";
     getline(ss, str, ','); // gets the first token before a comma
-    ss >> ws // ignore any whitespace before the comma
+    ss >> ws; // ignore any whitespace before the comma
     name = str.c_str();
     getline(ss, str, ',');
-    ss >> ws // ignore any whitespace
+    ss >> ws; // ignore any whitespace
     size = stoi(str.c_str(), NULL);
     getline(ss, str, ',');
     value = (char*)str.c_str(); // Cast as a char pointer, so we can set to value

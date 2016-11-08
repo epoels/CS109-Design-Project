@@ -1,10 +1,12 @@
 #include "templateVar.h"
 #include "Var.h"
 #include "common.h"
+#ifndef TEMPLATEVAR_CPP
+#define TEMPLATEVAR_CPP
 
 template<typename T>
 templateVar<T>::templateVar() {
-    cout << "Ok we are constructing an object" << endl;
+    cout << "Ok we are constructing an " << typeid(T).name() << " object" << endl;
     name = "";
     value = 0;
 }
@@ -13,7 +15,6 @@ template<typename T>
 templateVar<T>::templateVar(const string& inName, T val) {
     name = inName;
     value = val;
-    cout << name << ", " << value << endl;
 }
 
 template<typename T>
@@ -109,3 +110,5 @@ char templateVar<T>::getCharValue() {
 
 template<typename T>
 templateVar<T>::~templateVar(){}
+
+#endif
