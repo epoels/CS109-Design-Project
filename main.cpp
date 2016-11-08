@@ -7,15 +7,8 @@
 
 typedef void(*ScriptFunction)(stringstream& ss);
 map<string, ScriptFunction> functionPointers;
-map<string, VAR*> createdVariables;
-// map<string, FUNCTION*> functionCodes;
-// map<string, LABEL*> createdLabels;
 
 int main() {
-    // varMap["NUMERIC"] = new templateVar<int>;
-    //varMap["REAL"] = new templateVar<double>;
-    //varMap["CHAR"] = new templateVar<char>;
-    //varMap["STRING"] = new STRING();
     functionPointers["VAR"] = &varHelper;
     // functionCodes["ADD"]
     // functionCodes["SUB"]
@@ -53,10 +46,7 @@ int main() {
             (*(functionPointers[name]))(iss);
         }
     }
-    for( const auto &p : createdVariables ) {
-        delete(p.second);
-    }
-
+    deleteVariables();
     readFile.close();
     return 0;
 }

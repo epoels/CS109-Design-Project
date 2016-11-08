@@ -6,7 +6,6 @@
 
 template<typename T>
 templateVar<T>::templateVar() {
-    cout << "Ok we are constructing an " << typeid(T).name() << " object" << endl;
     name = "";
     value = 0;
 }

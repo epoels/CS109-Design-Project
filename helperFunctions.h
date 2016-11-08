@@ -1,4 +1,6 @@
 #include "common.h"
+#include "Var.h"
+extern map<string, VAR*> varMap;
 
 void varHelper( stringstream &ss );
 void addHelper( stringstream &ss );
@@ -18,3 +20,4 @@ void jmpGTEHelper( stringstream &ss );
 void jmpLTHelper( stringstream &ss );
 void jmpLTEHelper( stringstream &ss );
 void sleepHelper( stringstream &ss );
+void deleteVariables();
