@@ -17,3 +17,4 @@ void jmpGTHelper( stringstream &ss );
 void jmpGTEHelper( stringstream &ss );
 void jmpLTHelper( stringstream &ss );
 void jmpLTEHelper( stringstream &ss );
+void sleepHelper( stringstream &ss );

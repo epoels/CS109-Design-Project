@@ -24,6 +24,9 @@ class VAR {
         // sets a char in a string variable at the given index to the given value
         virtual void setStringValue(char a, int i){}
 
+        // Assigns a pointer of type char to a String VAR
+        virtual void assignString(char* a){}
+
         // sets the number value of VAR to the given value
         virtual void setNumValue(float i){}
 

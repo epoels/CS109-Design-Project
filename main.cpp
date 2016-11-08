@@ -8,7 +8,6 @@
 typedef void(*ScriptFunction)(stringstream& ss);
 map<string, ScriptFunction> functionPointers;
 map<string, VAR*> createdVariables;
-map<string, VAR*> varMap;
 // map<string, FUNCTION*> functionCodes;
 // map<string, LABEL*> createdLabels;
 
@@ -34,7 +33,7 @@ int main() {
     // functionCodes["JMPGTE"]
     // functionCodes["JMPLT"]
     // functionCodes["JMPLTE"]
-    // funcitonCodes["SLEEP"]
+    functionPointers["SLEEP"] = &sleepHelper;
     string line ="";
     ifstream readFile("ExampleFile.txt");
     string name ="";

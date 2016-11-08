@@ -53,6 +53,14 @@ void STRING::varInsert(map<string, VAR*> &varMap) {
     varMap[name] = this;
 }
 
+void STRING::assignString(char *a) {
+    if( sizeof(a)/sizeof(*a) > 256 ) {
+        cout << "Char array size must not exceed 256" << endl;
+        throw;
+    } else {
+        value = a;
+    }
+}
 
 void STRING::constructVar(stringstream &ss) {
     string str = "";

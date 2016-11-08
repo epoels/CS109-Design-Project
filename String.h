@@ -29,6 +29,9 @@ class STRING : public VAR {
         // Clones the VAR object, used for multi-threading
         VAR * clone(stringstream &ss);
 
+        // Assigns a pointer of type char to a String VAR
+        void assignString(char* a);
+
         // gets the char value of a VAR at the provided index
         char getStringValue(int i);
 
