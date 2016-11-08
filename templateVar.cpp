@@ -76,4 +76,34 @@ void templateVar<T>::varInsert(map<string, VAR*> &varMap) {
 }
 
 template<typename T>
+int templateVar<T>::getNumericValue() {
+    if ( strcmp( typeid(value).name(), "i") == 0 ) {
+        return value;
+    } else {
+        cout << "Attempted to grab an int from a non-int type" << endl;
+        throw;
+    }
+}
+
+template<typename T>
+double templateVar<T>::getRealValue() {
+    if ( strcmp( typeid(value).name(), "d") == 0 ) {
+        return value;
+    } else {
+        cout << "Attempted to grab a double from a non-double type" << endl;
+        throw;
+    }
+}
+
+template<typename T>
+char templateVar<T>::getCharValue() {
+    if ( strcmp( typeid(value).name(), "c") == 0 ) {
+        return value;
+    } else {
+        cout << "Attempted to grab a char from a non-char type" << endl;
+        throw;
+    }
+}
+
+template<typename T>
 templateVar<T>::~templateVar(){}

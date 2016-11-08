@@ -15,8 +15,7 @@ class STRING : public VAR {
         virtual void constructVar(stringstream &ss);
         void print();
         VAR * clone(stringstream &ss);
-        string getValue();
-        void setValue(){}
+        char getStringValue(int i);
         void setStringValue(char a, int i);
         virtual ~STRING();
 };

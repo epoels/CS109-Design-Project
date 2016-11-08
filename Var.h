@@ -13,6 +13,10 @@ class VAR {
         virtual void setStringValue(char a, int i){}
         virtual void setNumValue(float i){}
         virtual void setCharValue(char a){}
+        virtual char getStringValue(int i){}
+        virtual int getNumericValue(){ /*return 0; */ }
+        virtual double getRealValue(){  /* return 0.0; */}
+        virtual char getCharValue(){ /*return ' ';*/ }
     	virtual ~VAR(){}
 };
 

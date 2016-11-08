@@ -24,12 +24,15 @@ int main() {
             obj -> print();
             obj -> setCharValue('p');
             obj -> print();
+            char c = obj -> getCharValue();
+            cout << c << endl;
             obj -> varInsert(createdVariables);
         }
     }
     for( const auto &p : createdVariables ) {
         delete(p.second);
     }
+
     readFile.close();
     return 0;
 }

@@ -18,12 +18,20 @@ STRING::STRING(const string& inName, int inSize, char * inValue) {
     value = inValue;
 }
 
-void STRING::setStringValue(char a, int i){
+void STRING::setStringValue(char a, int i) {
     if( i < size ) {
         value[i] = a;
     } else { 
         cout << "The location is out of range of the variable" << endl;
         throw;
+    }
+}
+
+char STRING::getStringValue(int i) {
+    if( i < size ) {
+        return value[i];
+    } else {
+        cout << "The location is out of range of the variable" << endl;
     }
 }
 

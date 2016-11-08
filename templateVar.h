@@ -16,6 +16,9 @@ class templateVar: public VAR {
         virtual void setNumValue(float i);
         virtual void setCharValue(char a);
         void print();
+        virtual int getNumericValue();
+        virtual double getRealValue();
+        virtual char getCharValue();
         VAR * clone(stringstream &ss);
         virtual~templateVar();
 };
