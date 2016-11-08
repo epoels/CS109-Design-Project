@@ -32,7 +32,7 @@ T convert(const string& s){
 template<typename T>
 void templateVar<T>::setNumValue(float i) {
     try {
-        value = static_cast<int>(i);
+        value = static_cast<T>(i);
     } catch (std::bad_cast& bc) {
         cout << "Variable type mismatch" << endl;
         throw;
@@ -52,8 +52,10 @@ void templateVar<T>::setCharValue(char a) {
 template<typename T>
 void templateVar<T>::constructVar(stringstream &ss) {
     string str ="";
+    ss >> ws;
     getline(ss,str,',');
     name = str.c_str();
+    ss >> ws;
     getline(ss,str,',');
     value = convert<T>(str.c_str());
 }

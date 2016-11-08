@@ -5,27 +5,24 @@
 #include "templateVar.cpp"
 
 map<string, VAR*> createdVariables;
+map<string, VAR*> varMap;
 
 int main() {
-    map<string, VAR*> varMap;
-    // varMap["NUMERIC"] = new templateVar<int>;
-    // varMap["REAL"] = new templateVar<double>;
+    varMap["NUMERIC"] = new templateVar<int>;
+    varMap["REAL"] = new templateVar<double>;
     varMap["CHAR"] = new templateVar<char>;
-    // varMap["STRING"] = new STRING();
+    varMap["STRING"] = new STRING();
     string line ="";
     ifstream readFile("ExampleFile.txt");
     string name ="";
     while(getline(readFile, line)) {
-        stringstream iss(line); // Load line to the string stream
+        stringstream iss(line);// Load line to the string stream
         getline(iss, name, ',');
         VAR * obj = varMap[name];
         if( obj != NULL ) {
+            iss >> ws;
             obj -> constructVar(iss);
             obj -> print();
-            obj -> setCharValue('p');
-            obj -> print();
-            char c = obj -> getCharValue();
-            cout << c << endl;
             obj -> varInsert(createdVariables);
         }
     }
