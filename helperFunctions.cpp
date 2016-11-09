@@ -5,29 +5,29 @@
 #include "templateVar.cpp"
 #include "helperFunctions.h"
 
-map<string, VAR*> createdVariables;
-// map<string, LABEL*> createdLabels;
 map<string, VAR*> varMap = {
 	{ "NUMERIC", new templateVar<int> },
 	{ "REAL", new templateVar<double> },
 	{ "CHAR", new templateVar<char> },
-	{ "STRING", new STRING() }
+	{ "STRING", new STRING() },
 };
+// map<string, LABEL*> createdLabels;
+map<string, VAR*> createdVariables;
 
 void varHelper(stringstream& ss) {
 	string str = "";
-	cout << ss.str() << endl;
 	getline(ss, str, ',');
+    cout << str << endl;
 	getline(ss >> ws, str, ',');
-	cout << str << endl;
+    cout << str << endl;
 	VAR * obj = varMap[str];
-        if( obj != NULL ) {
-            ss >> ws;
-            // cout << ss.str() << endl;
-            obj -> constructVar(ss);
-            obj -> varInsert(createdVariables);
-            obj -> print();
-        }
+    if( obj != NULL ) {
+        ss >> ws;
+        VAR * objTemp = obj;
+        obj = obj -> clone(ss);
+        obj -> varInsert(createdVariables);
+        obj -> print();
+    }
 }
 
 void assignHelper( stringstream &ss ) {
@@ -46,16 +46,22 @@ void assignHelper( stringstream &ss ) {
     	getline(iss >> ws, in, ',');
     	if( in.c_str()[0] == '$' ) {
 		    VAR * obj = createdVariables[str.c_str()];
-		}
+            if( obj == NULL ) {
+                cout << "Variable does not exist" << endl;
+                throw;
+            } // do shit
+		} else {
+            // convert str to appropiate type
+        }
     }
 }
 
 void setStrHelper( stringstream &ss ) {
 	string str = "";
 	getline(ss, str, ',');
-	VAR * obj = createdVariables[str.c_str()];
+	VAR * obj = createdVariables[str];
 	if( obj == NULL ) {
-		cout << "Variable " << str.c_str() << " does not exit" << endl;
+		cout << "Variable " << str << " does not exit" << endl;
 		throw;
 	} else {
 		int i;
@@ -63,12 +69,38 @@ void setStrHelper( stringstream &ss ) {
         getline(ss >> ws, str, ',');
 	    i = stoi(str.c_str());
 	    getline(ss >> ws, str, ',');
-	    a = str.c_str();
-	    cout << a << endl;
+	    stringstream iss(str);
+	    iss >> a;
+	    obj -> setStringValue(a, i);
+	    obj -> print();
 	}
 }
 
 void getStrHelper( stringstream &ss ) {
+    string str = "";
+    getline(ss, str, ',');
+    VAR * obj = createdVariables[str];
+    if( obj == NULL ) {
+    	cout << "Variable " << str << " does not exist" << endl;
+    	throw;
+    }
+    getline(ss, str, ',');
+	int x;
+    char a;
+    if( str.c_str()[0] == '$' ) {
+    	x = obj -> getNumericValue();
+    } else {
+        x = stoi(str);
+    }
+    getline(ss, str, ',');
+    VAR * newObj = createdVariables[str];
+    if( newObj == NULL ) {
+        cout << "Variable " << str << " does not exist" << endl;
+    } else {
+        a = obj -> getStringValue(x);
+        newObj -> setStringValue(a, x);
+        newObj -> print();
+    }
 
 }
 
@@ -106,7 +138,15 @@ void sleepHelper(stringstream &ss) {
 }
 
 void deleteVariables() {
-	for( const auto &p : createdVariables ) {
-        delete(p.second);
+	for(map<string, VAR*>::iterator itr = createdVariables.begin(); itr != createdVariables.end(); itr++) {
+        cout << "Deleting Var: " << itr -> first << endl;
+        delete( itr -> second );
+        itr -> second = NULL;
     }
+    for(map<string, VAR*>::iterator itr = varMap.begin(); itr != varMap.end(); itr++) {
+        delete(itr -> second);
+        itr -> second = NULL;
+    }
+    createdVariables.clear();
+    varMap.clear();
 }

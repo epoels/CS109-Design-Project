@@ -5,17 +5,17 @@
 
 // This class is derived from var, and its value is a char array, and has int size
 class STRING : public VAR {
-    protected:
+    private:
         string name;
         int size;
-        char* value;
+        string value;
     public:
 
         // default constructor
         STRING();
 
         // Paramaterized constructor initializing data members from param list
-        STRING(const string& inName, int inSize, char* inValue);
+        STRING(const string& inName, int inSize, string inValue);
 
         // Inserts a VAR into a map for later use
         void varInsert(map<string, VAR*> &varMap);
@@ -30,7 +30,7 @@ class STRING : public VAR {
         VAR * clone(stringstream &ss);
 
         // Assigns a pointer of type char to a String VAR
-        void assignString(char* a);
+        void assignString(string a);
 
         // gets the char value of a VAR at the provided index
         char getStringValue(int i);

@@ -1,2 +1,1 @@
-VAR $myString,STRING,100,inine was a cool cat that everyone liked
-SET_STR_CHAR $myString,2,a
+VAR $myString,NUMERIC,100

@@ -1,6 +1,5 @@
 #include "common.h"
 #include "Var.h"
-extern map<string, VAR*> varMap;
 
 void varHelper( stringstream &ss );
 void addHelper( stringstream &ss );

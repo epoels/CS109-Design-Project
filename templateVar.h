@@ -7,7 +7,7 @@
 // This is a template class because we wanted the value's type to vary
 template<typename T>
 class templateVar: public VAR {
-    protected:
+    private:
         string name;
         T value;
     public:

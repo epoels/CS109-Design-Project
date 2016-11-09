@@ -5,12 +5,12 @@
 STRING::STRING(){
     name = ""; 
     size = 0; 
-    value = NULL;
+    value = "";
 }
 
-STRING::STRING(const string& inName, int inSize, char * inValue) {
+STRING::STRING(const string& inName, int inSize, string inValue) {
     // if the string is too long, or the given size is too big, don't create this variable
-    if( inSize > 256 || inSize < 0 || sizeof(inValue)/sizeof(*inValue) > 256 ) {
+    if( inSize > 256 || inSize < 0 || inValue.size() > 256 ) {
         cout << "Char array size must not exceed 256" << endl;
         throw;
     }
@@ -23,7 +23,7 @@ STRING::STRING(const string& inName, int inSize, char * inValue) {
 // sets the value at the given index to the char value
 void STRING::setStringValue(char a, int i) {
     // we can't change the value of an array if its too big
-    if( i < size ) {
+    if( i < size || i < value.size() ) {
         value[i] = a;
     } else { 
         // if it is too big, throw an error
@@ -53,8 +53,8 @@ void STRING::varInsert(map<string, VAR*> &varMap) {
     varMap[name] = this;
 }
 
-void STRING::assignString(char *a) {
-    if( sizeof(a)/sizeof(*a) > 256 ) {
+void STRING::assignString(string a) {
+    if( a.size() > 256 ) {
         cout << "Char array size must not exceed 256" << endl;
         throw;
     } else {
@@ -78,7 +78,7 @@ void STRING::constructVar(stringstream &ss) {
     iss >> ws;
     getline(iss, str, ',');
     cout << str.c_str() << endl;
-    value = (char*)str.c_str(); // Cast as a char pointer, so we can set to value
+    value = str; // Cast as a char pointer, so we can set to value
 }
 
 // clones VAR object for multi-thread use
