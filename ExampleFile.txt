@@ -1,4 +1,2 @@
-VAR NUMERIC,myInt,100
-VAR REAL,myDouble,320.2
-VAR CHAR,   myChar, c
-VAR STRING,myString,100,Inine was a cool cat that everyone liked
+VAR $myString,STRING,100,inine was a cool cat that everyone liked
+SET_STR_CHAR $myString,2,a

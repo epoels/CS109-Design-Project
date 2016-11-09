@@ -51,12 +51,18 @@ void templateVar<T>::setCharValue(char a) {
 
 template<typename T>
 void templateVar<T>::constructVar(stringstream &ss) {
-    string str ="";
-    ss >> ws;
-    getline(ss,str,',');
+    string str = "";
+    stringstream iss(ss.str()); // gets the first token before a comma
+    iss >> ws;
+    getline(iss, str, ' ');
+    iss >> ws;
+    getline(iss, str, ',');
     name = str.c_str();
-    ss >> ws;
-    getline(ss,str,',');
+    iss >> ws; // ignore any whitespace before the comma
+    getline(iss, str, ',');
+    iss >> ws; // ignore any whitespace
+    getline(iss, str, ',');
+    iss >> ws;
     value = convert<T>(str.c_str());
 }
 

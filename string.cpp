@@ -64,13 +64,20 @@ void STRING::assignString(char *a) {
 
 void STRING::constructVar(stringstream &ss) {
     string str = "";
-    getline(ss, str, ','); // gets the first token before a comma
-    ss >> ws; // ignore any whitespace before the comma
+    stringstream iss(ss.str()); // gets the first token before a comma
+    iss >> ws;
+    getline(iss, str, ' ');
+    iss >> ws;
+    getline(iss, str, ',');
     name = str.c_str();
-    getline(ss, str, ',');
-    ss >> ws; // ignore any whitespace
+    iss >> ws; // ignore any whitespace before the comma
+    getline(iss, str, ',');
+    iss >> ws; // ignore any whitespace
+    getline(iss, str, ',');
     size = stoi(str.c_str(), NULL);
-    getline(ss, str, ',');
+    iss >> ws;
+    getline(iss, str, ',');
+    cout << str.c_str() << endl;
     value = (char*)str.c_str(); // Cast as a char pointer, so we can set to value
 }
 
