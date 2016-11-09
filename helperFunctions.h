@@ -1,11 +1,11 @@
 #include "common.h"
 #include "Var.h"
-extern map<string, VAR*> varMap;
+//extern map<string, VAR*> varMap;
 
 void varHelper( stringstream &ss );
 void addHelper( stringstream &ss );
 void subHelper( stringstream &ss );
-void mulHelper( stringstream &ss );
+void multHelper( stringstream &ss );
 void divHelper( stringstream &ss );
 void assignHelper( stringstream &ss );
 void outHelper( stringstream &ss );
