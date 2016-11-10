@@ -1,0 +1,20 @@
+void JMPHelper(stringstream&ss) {
+    string str = "";
+    getline(ss, str, ' ');
+    cout << str << endl;
+    jump* A = new jump();
+    if (A != NULL) {
+        A -> initialize(ss, counter);
+        map<string, label*>::iterator p;
+        p = createdLabels.find(str);
+        if (p != createdLabels.end()) {
+            counter = p->second->linenumber;
+            cout << "Jumping to label " << A->labelname << endl;
+        } else {
+            cout << "label not found\n";
+            delete(A);
+            exit(1);
+        }
+        delete(A);
+    }
+}
