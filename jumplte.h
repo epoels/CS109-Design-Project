@@ -1,9 +1,4 @@
-#include<iostream>
-#include<string>
-#include<fstream>
-#include<vector>
-#include<map>
-#include<sstream>
+#include"common.h"
 using namespace std; 
 class jumplte : public jumproto {
 public:
@@ -11,6 +6,6 @@ public:
 	jumplte();
 	virtual ~jumplte();
 	virtual void initialize(stringstream &ss, int x);
-	void acjump(string x, string y, string z);
 	int linenumber;
+	string labelname;
 };
