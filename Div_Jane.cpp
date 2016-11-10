@@ -17,15 +17,15 @@ bool Div::validator(){
                 try{
                         if(convert(s)!=0){
                                 num_params++;
-                                if(convert(s)==2){converted_params.push_back(stof(s));}
+                                if(convert(s)==2){converted_params.push_back(stod(s));}
                                 else if(convert(s)==1){converted_params.push_back(createdVariables[s]->getNumericValue());}
                         }
                         else{cerr << "IN DIV: bad convert of " << s << endl; return false;}
                 }
                 catch(...){return false;}
                 if(converted_params[1]==0){cerr << "IN DIV: cannot divide by zero!" << endl; return false;}
-                if(num_params!=2){cerr << "IN DIV: wrong number of parameters" << endl; return false;}
         }
+        if(num_params!=2){cerr << "IN DIV: wrong number of parameters" << endl; return false;}
         return true;
 }
 //if validator is true, run add process
