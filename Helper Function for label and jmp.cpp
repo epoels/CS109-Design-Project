@@ -1,20 +1,17 @@
-void labelHelper(stringstream&ss) {
-	string str = "";
-	getline(ss, str, ' ');
-	label* A = labels[name];
-	if (A != NULL) {
-		A = A->initialize(ss, counter);
-		delete(A);
-	}
-}
-
 void  JMPHelper(stringstream&ss) {
 	string str = "";
 	getline(ss, str, ' ');
-	jump* A = Var[name];
+	jump* A = Var[str];
 	if (A != NULL) {
 		A = A->initialize(ss, counter);
-		delete(A);
+		map<string, label*>::iterator p;
+		p = labelclass.find(A->labelname);
+		if (p != createdLabel.end())
+			counter = p->second->linenumber;
+		else {
+			cout << "label not found\n";
+			exit(1);
+		}
 	}
 }
 
